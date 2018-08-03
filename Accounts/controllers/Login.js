@@ -13,7 +13,7 @@ const login = function (req, res) {
             if(pass === false) {
                 res.status(404).send({message: "Incorrect Username or Password!"}) // password did not match.
             } else {
-                const token = jwt.sign({username, password, iat: Date.now()}, 'secret', {algorithm: 'HS256'}); // Generates token when successfully signed in.
+                const token = jwt.sign({username, password, iat: Date.now()}, process.env.SECRET, {algorithm: 'HS256'}); // Generates token when successfully signed in.
                 res.status(200).send({
                     message: "Logged in successfully!", 
                     token: token
