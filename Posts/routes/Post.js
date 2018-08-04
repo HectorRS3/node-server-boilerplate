@@ -22,7 +22,7 @@ router.get("/", function (req, res) {
             }
           });
         })
-        .catch(err => console.log(`ERROR: ${err}`));
+        .catch(err => res.send.status(500).send(err));
     }
   })
 })
@@ -44,7 +44,7 @@ router.get("/", function (req, res) {
           }
         });
       })
-      .catch(err => console.log(`ERROR: ${err}`));
+      .catch(err => res.send.status(500).send(err));
     }
   })
  });
