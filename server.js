@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const port = process.env.PORT || 8080;
 
 // Connection
 const connection = require('./connection');
@@ -28,6 +29,6 @@ app.use(bodyParser.urlencoded({ extended: true})); // application/x-www-form-url
 app.use('/user', userRoutes);
 app.use('/posts', postRoute);
 
-app.listen(8080, function(req, res){
-    console.log("Listening on http://localhost:8080...");
+app.listen(port, function(req, res){
+    console.log(`Listening on http://localhost:${port}...`);
 });
