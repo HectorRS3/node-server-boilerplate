@@ -14,3 +14,5 @@ npm install
 ```
 npm start
 ```
+
+*Please keep in mind that you will need to create an .env file*
