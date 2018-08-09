@@ -39,7 +39,55 @@ const createNewPost = (req, res) => {
     });
 }
 
+const updatePost = (req, res) => {
+  const {comment} = req.body;
+  const {id} = req.query;
+  
+  const oldPost = Post.findOne({id: id}, function(err, post){
+
+    if(err) {
+      res.status(400).send({
+        message: "This post doesn't exist, is just an illusion."
+      });
+    }
+
+    post.comment = comment;
+
+    post.save(function(err, post){
+      if(err) {
+        res.status(500).send({
+	  message: "Could not update your post. Please try again later."
+	});
+      }
+      
+      res.status(200).send({
+        message: "Post updated successfully!"
+      });
+    });
+  });
+}
+
+const deletePost = (req, res) => {
+  const {id} = req.query;
+
+  const currentPost = Post.findOneAndRemove({id: id}, function(err, post){
+    if(err) {
+      res.status(500).send({
+        message: "Something went wrong. Please try again later."
+      });
+    }
+
+    res.status(200).send({ 
+      message: "Post removed successfully!",
+      id: post._id
+    });
+
+  });
+}
+
 module.exports = {
     getAllPosts,
-    createNewPost
+    createNewPost,
+    updatePost,
+    deletePost
 }
