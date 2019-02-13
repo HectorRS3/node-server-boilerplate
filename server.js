@@ -10,8 +10,8 @@ const port = process.env.PORT || 8080;
 const connection = require('./connection');
 
 // Routes
-const userRoutes = require('./Accounts/Index');
-const postRoute = require('./Posts/Index');
+const userRoutes = require('./src/routes/User');
+const postRoutes = require('./src/routes/Post');
 
 // Initiate connection with MongoDB.
 app.use(connection, function(){
@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true})); // application/x-www-form-url
 
 // Route list
 app.use('/user', userRoutes);
-app.use('/posts', postRoute);
+app.use('/posts', postRoutes);
 
 app.listen(port, function(req, res){
     console.log(`Listening on http://localhost:${port}...`);
